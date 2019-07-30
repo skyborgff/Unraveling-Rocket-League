@@ -12,7 +12,7 @@ This project uses the [RLBot Framework](http://www.rlbot.org/) to control a cust
 
 [<img src="https://img.shields.io/pypi/v/rlbot.svg">](https://pypi.org/project/rlbot/)
 
-![Throttle Data](https://i.gyazo.com/e94099da6e38f32c483db8fdb325052c.gif)
+![Throttle Data](https://i.gyazo.com/baca3467dcf76d9a41ad6a9fc6f333a2.gif)
 
 ### Requirements
 
