@@ -41,12 +41,15 @@ class PythonExample(BaseAgent):
         self.data_file_loc = dirname(realpath(__file__)) + r'\data'
         # Floats are packed from -1, 1 to 0, 255 for networking purposes. we only need to analyze those.
         # Any in between will result in repeated data
-        # Float delta for each run
         delta_float = 2 / 255
-        #List o throttle values that the game "accepts"
-        self.throttle_list = list(np.arange(-1, 1, delta_float))
-        # Adding 1 to the end. This is more reliable than doing np.arange(-1, 1 + delta_float, delta_float)
-        self.throttle_list.append(1)
+        # List o throttle values that the game "accepts"
+        self.throttle_range_list = list(np.arange(-1 + delta_float/2, 1, delta_float))
+        # Adding -1 to the begining
+        self.throttle_list = [-1]
+        # Adding the list
+        self.throttle_list.extend(self.throttle_range_list)
+        # Adding 1 to the end.
+        self.throttle_list.extend([1])
         # Creating a progress bar
         self.bar = progressbar.ProgressBar(max_value=len(self.throttle_list))
 
@@ -90,9 +93,9 @@ class PythonExample(BaseAgent):
                 # Create the np.array with this runs data
                 data_array = np.array(self.data_list)
                 # Get this runs file name
-                strt_hrottle = str(self.throttle_list[self.throttle_index]).replace('.', '_') + '.npy'
+                strt_hrottle = str(self.throttle_list[self.throttle_index]).replace('.', '_')
                 # Get this runs file path
-                file_path = self.data_file_loc + sep + strt_hrottle
+                file_path = self.data_file_loc + sep + strt_hrottle + '.npy'
                 # Save the np.array to the ile_path
                 np.save(file_path, data_array)
                 # Increment throttle index
@@ -107,7 +110,7 @@ class PythonExample(BaseAgent):
                 # Add the counter headstart to make waiting times between runs smaller
                 self.tick_counter = self.tick_counter_headstart
             # Check if throttle index is exceeding the possible values, and if so, stop the run
-            if self.throttle_index >= len(self.throttle_list):
+            if self.throttle_index > len(self.throttle_list):
                 import psutil
                 # Close rocket league
                 for process in (process for process in psutil.process_iter() if process.name() == "RocketLeague.exe"):
