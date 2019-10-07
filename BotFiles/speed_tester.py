@@ -83,7 +83,7 @@ class TestBot:
         #
         #     #if np.sign(closest_throttle) * np.sign(current_v) < 1 or (abs(velocity_delta) <= 10 and abs(distance_to_target) < 5):
         #     if np.sign(closest_throttle) * np.sign(current_v) < 1 and abs(distance_to_target) <= 10:
-        #         # check future if breaking
+        #         # check future if braking
         #         # next_vel = rf.next_linear_velocity_V2(current_vel, closest_throttle, 1 / 120)
         #         # next_loc = current_loc + next_vel * (1 / 120)
         #         # delta_distance = abs(target_loc - next_loc)

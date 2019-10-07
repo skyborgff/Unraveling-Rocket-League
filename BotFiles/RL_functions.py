@@ -20,7 +20,7 @@ def next_linear_velocity(current_speed, current_throttle, delta_t):
         acc = ((x - c) * b + c * a) * (abs(current_throttle - 1 / 255)) * sign_th
     else:  # small thottle
         acc = x * a * abs(current_throttle - 1 / 255) * sign_th
-    if sign_th * sign_vl < 1:  # breaking
+    if sign_th * sign_vl < 1:  # braking
         acc = 3510 * sign_th
     if current_throttle in coast_throttle:  # costing
         acc = 525 * sign_th * 0
@@ -65,7 +65,7 @@ def next_linear_velocity_V2(current_speed, throttle, delta_t):
                 * abs(throttle - 1 / 255)
                 * sign_th
             )
-        if sign_th * sign_vl <= 0:  # breaking
+        if sign_th * sign_vl <= 0:  # braking
             acc = 3500 * sign_th
         if throttle in coast_throttle:  # costing
             acc = 525 * -1 * sign_vl

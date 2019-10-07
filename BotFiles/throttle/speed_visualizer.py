@@ -19,13 +19,12 @@ class Visualizer(object):
         data_dir = dirname(realpath(__file__)) + r"\data\regular"
         data_file_name = [
             "#full_data_path.npy",
-            "acc_data_path.npy",
-            "#break_data_path.npy",
-            "#boost_data_path.npy",
+            "#acc_data_path.npy",
+            "break_data_path.npy",
             "#coast_data_path.npy",
         ]
         # Initiate the data array
-        full_data = np.ndarray
+        full_data = np.empty((3,))
         # iterating through all files and adding them to a huge array
         for filename in os.listdir(data_dir):
             if filename not in data_file_name:
@@ -33,11 +32,7 @@ class Visualizer(object):
             filepath = data_dir + sep + filename
             # Loading data
             data = np.load(filepath)
-
-            try:
-                full_data = np.vstack((full_data, data))
-            except:
-                full_data = data
+            full_data = np.vstack((full_data, data))
 
         pos_data_mask = full_data[:, 0] >= 0
         self.pos_data = full_data[pos_data_mask]

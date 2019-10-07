@@ -46,24 +46,15 @@ for filename in os.listdir(data_dir):
 full_data_path = data_dir + os.path.sep + "full_data_path" + ".npy"
 np.save(full_data_path, full_data)
 
-acc_mask = (
-    (full_data[:, 0] * full_data[:, 2] > 0)
-    & (abs(full_data[:, 0]) > af.coast_limit)
-    & (abs(full_data[:, 0]) <= 1)
+acc_mask = (full_data[:, 0] * full_data[:, 2] > 0) & (
+    abs(full_data[:, 0]) > af.coast_limit
 )
 acc_data = full_data[acc_mask]
 acc_data_path = data_dir + os.path.sep + "acc_data_path" + ".npy"
 np.save(acc_data_path, acc_data)
 
-boost_mask = abs(full_data[:, 0]) > 1
-boost_data = full_data[boost_mask]
-boost_data_path = data_dir + os.path.sep + "boost_data_path" + ".npy"
-np.save(boost_data_path, boost_data)
-
-break_mask = (
-    (full_data[:, 0] * full_data[:, 2] < 0)
-    & (abs(full_data[:, 0]) > af.coast_limit)
-    & (abs(full_data[:, 0]) <= 1)
+break_mask = (full_data[:, 0] * full_data[:, 2] < 0) & (
+    abs(full_data[:, 0]) > af.coast_limit
 )
 break_data = full_data[break_mask]
 break_data_path = data_dir + os.path.sep + "break_data_path" + ".npy"
@@ -73,3 +64,5 @@ coast_mask = abs(full_data[:, 0]) < af.coast_limit
 coast_data = full_data[coast_mask]
 coast_data_path = data_dir + os.path.sep + "coast_data_path" + ".npy"
 np.save(coast_data_path, coast_data)
+
+print("Done")
