@@ -7,3 +7,4 @@ rlbottraining
 pip
 
 psutil>=5.6.7 # not directly required, pinned by Snyk to avoid a vulnerability
+numpy>=1.22.2 # not directly required, pinned by Snyk to avoid a vulnerability
