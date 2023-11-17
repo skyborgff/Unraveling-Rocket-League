@@ -7,3 +7,4 @@ rlbottraining
 pip
 
 psutil>=5.6.7 # not directly required, pinned by Snyk to avoid a vulnerability
+selenium>=4.15.1 # not directly required, pinned by Snyk to avoid a vulnerability
